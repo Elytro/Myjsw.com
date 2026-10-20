@@ -1,23 +1,731 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>myjsw.com</title>
-    <style>
-        body { font-family: -apple-system, "Segoe UI", sans-serif; display: flex;
-               min-height: 100vh; align-items: center; justify-content: center;
-               margin: 0; background: #f5f5f5; color: #333; }
-        .card { background: #fff; padding: 3rem 4rem; border-radius: 12px;
-                box-shadow: 0 4px 16px rgba(0,0,0,.08); text-align: center; }
-        h1 { margin: 0 0 .5rem; font-size: 1.6rem; }
-        p { margin: 0; color: #888; }
-    </style>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>教师成长社群 · 与同行一起，把课上得更好</title>
+<meta name="keywords" content="教师社群,教师成长,教研交流,教学资源,班主任,教师培训">
+<meta name="description" content="面向中小学教师的纯净交流社群：教学研讨、资源共享、成长陪伴，与同行一起把课上得更好。">
+<link href="https://apps.bdimg.com/libs/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://apps.bdimg.com/libs/fontawesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
+<script>document.documentElement.className += " js";</script>
+<style>
+  /* ============ 基础 ============ */
+  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+    color: #26313a;
+    background: #fff;
+    line-height: 1.9;
+    letter-spacing: .3px;
+    padding-top: 58px;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; transition: color .2s ease; }
+  a:hover, a:focus { color: #1f6f68; text-decoration: none; }
+  img { max-width: 100%; }
+  h1, h2, h3, h4 { line-height: 1.55; font-weight: 700; letter-spacing: 1px; margin: 0; }
+  p { margin: 0; }
+  ::selection { background: #d6ece8; color: #14322f; }
+
+  .wrap { max-width: 1080px; }
+  .sec { padding: 92px 0; }
+  .sec-line { border-top: 1px solid #eaf0ee; }
+  .lead { font-size: 16px; color: #68757e; line-height: 2; }
+  .muted { color: #68757e; }
+  .eyebrow {
+    display: inline-block; font-size: 12px; letter-spacing: 2px; color: #1f6f68;
+    text-transform: uppercase; margin-bottom: 14px;
+  }
+  .eyebrow:before {
+    content: ""; display: inline-block; width: 22px; height: 1px; background: #1f6f68;
+    vertical-align: middle; margin-right: 10px;
+  }
+  .title-lg { font-size: 34px; }
+  .title-md { font-size: 27px; }
+  .gap-line { width: 52px; height: 3px; background: linear-gradient(90deg,#1f6f68,#7fc3b8); border-radius: 2px; margin: 20px 0 0; }
+  .center { text-align: center; }
+  .center .gap-line { margin-left: auto; margin-right: auto; }
+
+  /* ============ 按钮 ============ */
+  .btn {
+    border-radius: 999px; padding: 12px 30px; font-size: 15px; letter-spacing: .5px;
+    transition: all .25s ease; border: 1px solid transparent;
+  }
+  .btn-s {
+    background: linear-gradient(135deg,#1f6f68,#2c9187); border: 0; color: #fff;
+    box-shadow: 0 8px 20px rgba(31,111,104,.24);
+  }
+  .btn-s:hover, .btn-s:focus {
+    color: #fff; transform: translateY(-2px); box-shadow: 0 12px 26px rgba(31,111,104,.32);
+  }
+  .btn-o {
+    background: #fff; border: 1px solid #dde6e3; color: #26313a;
+  }
+  .btn-o:hover, .btn-o:focus {
+    color: #1f6f68; border-color: #9dc9c1; background: #fff; transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(38,49,58,.06);
+  }
+  .fa { margin-right: 7px; }
+
+  /* ============ 导航 ============ */
+  .nav-a {
+    background: rgba(255,255,255,.86);
+    -webkit-backdrop-filter: saturate(180%) blur(12px);
+    backdrop-filter: saturate(180%) blur(12px);
+    border: 0; border-radius: 0; margin-bottom: 0; min-height: 58px;
+    box-shadow: 0 1px 0 rgba(38,49,58,0);
+    transition: box-shadow .3s ease, background .3s ease;
+  }
+  .nav-a.is-stick { box-shadow: 0 1px 14px rgba(38,49,58,.07); background: rgba(255,255,255,.96); }
+  .nav-a .navbar-brand { height: 58px; line-height: 28px; font-weight: 700; letter-spacing: 1.5px; color: #26313a; font-size: 16px; }
+  .nav-a .navbar-brand .mark {
+    display: inline-block; width: 28px; height: 28px; line-height: 28px; text-align: center; border-radius: 8px;
+    background: linear-gradient(135deg,#1f6f68,#2c9187); color: #fff; font-size: 14px; margin-right: 9px;
+    box-shadow: 0 4px 10px rgba(31,111,104,.28);
+  }
+  .nav-a .navbar-brand .mark .fa { margin: 0; }
+  .nav-a .nav > li > a {
+    height: 58px; line-height: 28px; padding: 15px 16px; color: #5d6a73; font-size: 14px; position: relative;
+  }
+  .nav-a .nav > li > a:after {
+    content: ""; position: absolute; left: 50%; bottom: 12px; width: 0; height: 2px; border-radius: 2px;
+    background: #1f6f68; transition: all .25s ease; transform: translateX(-50%);
+  }
+  .nav-a .nav > li > a:hover:after, .nav-a .nav > li.active > a:after { width: 20px; }
+  .nav-a .nav > li > a:hover { color: #1f6f68; background: transparent; }
+  .nav-a .nav > li > .btn-join {
+    height: 38px; line-height: 36px; padding: 0 22px; margin: 10px 0 0 12px; border-radius: 999px;
+    background: #1f6f68; color: #fff; font-size: 14px;
+  }
+  .nav-a .nav > li > .btn-join:hover { background: #2c9187; color: #fff; }
+  .nav-a .nav > li > .btn-join:after { display: none; }
+  .nav-a .navbar-toggle { border: 0; margin: 12px 15px; }
+  .nav-a .navbar-toggle .icon-bar { background: #26313a; height: 2px; border-radius: 2px; }
+  .nav-a .navbar-toggle:hover .icon-bar { background: #1f6f68; }
+
+  /* ============ 首屏 ============ */
+  .hero {
+    position: relative; overflow: hidden; padding: 104px 0 96px; text-align: center;
+    background: linear-gradient(180deg,#f4faf8 0%,#ffffff 62%);
+  }
+  .hero:before {
+    content: ""; position: absolute; inset: 0;
+    background-image: linear-gradient(rgba(31,111,104,.045) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(31,111,104,.045) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, #000 0%, transparent 72%);
+    -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, #000 0%, transparent 72%);
+    pointer-events: none;
+  }
+  .hero .blob { position: absolute; border-radius: 50%; filter: blur(58px); opacity: .5; pointer-events: none; }
+  .hero .b1 { width: 340px; height: 340px; background: #a9ded6; top: -120px; left: -80px; }
+  .hero .b2 { width: 300px; height: 300px; background: #d8ead8; bottom: -140px; right: -60px; }
+  .hero > .container { position: relative; z-index: 2; }
+  .hero .badge-pill {
+    display: inline-block; font-size: 13px; color: #1f6f68; background: rgba(255,255,255,.9);
+    border: 1px solid #d9ebe7; padding: 6px 16px; border-radius: 999px; letter-spacing: .5px;
+    box-shadow: 0 4px 14px rgba(31,111,104,.06); margin-bottom: 26px;
+  }
+  .hero .badge-pill .fa { margin-right: 6px; }
+  .hero h1 { font-size: 42px; letter-spacing: 2px; }
+  .hero h1 em {
+    font-style: normal; position: relative;
+    background: linear-gradient(120deg,#1f6f68,#3fae9d); -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .hero .sub { max-width: 640px; margin: 0 auto; font-size: 16px; color: #68757e; }
+  .hero .acts { margin-top: 38px; }
+  .hero .acts .btn { margin: 0 6px; }
+  .hero-meta { margin-top: 34px; font-size: 13px; color: #93a0a7; }
+  .hero-meta span + span:before { content: "·"; margin: 0 10px; }
+
+  /* ============ 数据 ============ */
+  .facts { padding: 46px 0; }
+  .facts-inner {
+    background: #fff; border: 1px solid #eaf0ee; border-radius: 16px;
+    box-shadow: 0 10px 34px rgba(38,49,58,.05); padding: 30px 10px; margin-top: -84px; position: relative; z-index: 3;
+  }
+  .fact { text-align: center; padding: 12px 8px; }
+  .fact + .fact { box-shadow: inset 1px 0 0 #eef4f2; }
+  .fact .n { font-size: 30px; font-weight: 700; color: #1f6f68; letter-spacing: 1px; }
+  .fact .n small { font-size: 16px; margin-left: 2px; }
+  .fact .t { font-size: 13px; color: #93a0a7; letter-spacing: 1px; margin-top: 2px; }
+
+  /* ============ 通用卡片 ============ */
+  .card {
+    background: #fff; border: 1px solid #eaf0ee; border-radius: 14px; padding: 30px 26px;
+    height: 100%; transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+  }
+  .card:hover {
+    transform: translateY(-5px); border-color: #d3e7e2;
+    box-shadow: 0 16px 36px rgba(31,111,104,.10);
+  }
+  .ico {
+    width: 46px; height: 46px; line-height: 46px; text-align: center; border-radius: 12px; font-size: 19px;
+    color: #1f6f68; background: #eef7f5; margin-bottom: 18px;
+  }
+  .ico .fa { margin: 0; }
+  .card h3 { font-size: 17px; margin-bottom: 8px; }
+  .card p { font-size: 14px; color: #68757e; }
+  .card-plain {
+    background: #fff; border: 1px solid #eaf0ee; border-radius: 14px; padding: 26px 24px; height: 100%;
+    transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+  }
+  .card-plain:hover { transform: translateY(-4px); border-color: #d3e7e2; box-shadow: 0 14px 30px rgba(31,111,104,.09); }
+  .row-gap > div[class^="col-"] { margin-bottom: 24px; }
+
+  /* ============ 关于 ============ */
+  .about-txt { font-size: 15px; color: #68757e; margin-top: 22px; }
+  .quote-box {
+    border-left: 3px solid #1f6f68; padding: 6px 0 6px 20px; margin-top: 26px;
+    font-size: 15px; color: #33414a; line-height: 2;
+  }
+  .quote-box cite { display: block; font-size: 13px; color: #93a0a7; font-style: normal; margin-top: 6px; }
+
+  /* ============ 社群矩阵 ============ */
+  .group-head { display: flex; align-items: center; margin-bottom: 14px; }
+  .group-head .ico { width: 40px; height: 40px; line-height: 40px; font-size: 17px; margin-bottom: 0; }
+  .group-head h3 { font-size: 16px; margin: 0; }
+  .tag {
+    display: inline-block; font-size: 12px; color: #1f6f68; background: #eef7f5; border-radius: 999px;
+    padding: 2px 10px; margin: 0 6px 6px 0; letter-spacing: .5px;
+  }
+  .group-extra { font-size: 13px; color: #93a0a7; border-top: 1px dashed #eef4f2; padding-top: 12px; margin-top: 14px; }
+  .group-extra .fa { margin: 0 4px 0 0; }
+
+  /* ============ 步骤 / 时间轴 ============ */
+  .steps { position: relative; padding-left: 44px; }
+  .steps:before {
+    content: ""; position: absolute; left: 15px; top: 10px; bottom: 10px; width: 1px; background: #e3ecea;
+  }
+  .step { position: relative; padding-bottom: 30px; }
+  .step:last-child { padding-bottom: 0; }
+  .step .no {
+    position: absolute; left: -44px; top: -2px; width: 32px; height: 32px; line-height: 30px; text-align: center;
+    border-radius: 50%; background: #fff; border: 1px solid #d3e7e2; color: #1f6f68; font-size: 13px; font-weight: 700;
+    box-shadow: 0 0 0 4px #f4faf8;
+  }
+  .step h4 { font-size: 16px; margin-bottom: 4px; }
+  .step p { font-size: 14px; color: #68757e; }
+  .act-item { padding: 14px 0; border-bottom: 1px solid #eef4f2; }
+  .act-item:last-child { border-bottom: 0; }
+  .act-item .when { font-size: 12px; color: #1f6f68; letter-spacing: 1px; }
+  .act-item .what { font-size: 15px; color: #33414a; }
+
+  /* ============ 公约 ============ */
+  .rules-wrap { background: linear-gradient(180deg,#f6fbf9,#fff); }
+  .rule-box {
+    background: #fff; border: 1px solid #eaf0ee; border-radius: 14px; padding: 24px 22px; height: 100%;
+    transition: border-color .3s ease, box-shadow .3s ease;
+  }
+  .rule-box:hover { border-color: #d3e7e2; box-shadow: 0 10px 26px rgba(31,111,104,.08); }
+  .rule-box .rk { font-size: 12px; color: #93a0a7; letter-spacing: 2px; }
+  .rule-box h4 { font-size: 16px; margin: 6px 0 8px; }
+  .rule-box p { font-size: 14px; color: #68757e; }
+
+  /* ============ CTA ============ */
+  .cta-wrap { padding: 0 0 92px; }
+  .cta-box {
+    position: relative; overflow: hidden; border-radius: 20px; padding: 62px 30px; text-align: center; color: #fff;
+    background: linear-gradient(135deg,#175a54 0%,#1f6f68 45%,#2f9a8c 100%);
+    box-shadow: 0 20px 46px rgba(31,111,104,.26);
+  }
+  .cta-box:before, .cta-box:after {
+    content: ""; position: absolute; border-radius: 50%; background: rgba(255,255,255,.07);
+  }
+  .cta-box:before { width: 260px; height: 260px; left: -80px; bottom: -120px; }
+  .cta-box:after { width: 200px; height: 200px; right: -60px; top: -90px; }
+  .cta-box .inner { position: relative; z-index: 2; }
+  .cta-box h2 { font-size: 28px; letter-spacing: 1.5px; }
+  .cta-box p { color: rgba(255,255,255,.82); margin-top: 14px; font-size: 15px; }
+  .cta-box .btn-light {
+    background: #fff; color: #175a54; border: 0; box-shadow: 0 10px 24px rgba(0,0,0,.14);
+  }
+  .cta-box .btn-light:hover { transform: translateY(-2px); box-shadow: 0 14px 30px rgba(0,0,0,.2); color: #175a54; }
+
+  /* ============ 页脚 ============ */
+  .foot { border-top: 1px solid #eaf0ee; padding: 54px 0 30px; font-size: 14px; color: #68757e; }
+  .foot .brand { color: #26313a; font-weight: 700; letter-spacing: 1.5px; font-size: 15px; margin-bottom: 14px; }
+  .foot .brand .mark {
+    display: inline-block; width: 26px; height: 26px; line-height: 26px; text-align: center; border-radius: 7px;
+    background: linear-gradient(135deg,#1f6f68,#2c9187); color: #fff; font-size: 13px; margin-right: 8px;
+  }
+  .foot .brand .mark .fa { margin: 0; }
+  .foot h5 { font-size: 13px; color: #26313a; letter-spacing: 1.5px; margin-bottom: 16px; font-weight: 700; }
+  .foot ul { list-style: none; padding: 0; margin: 0; }
+  .foot ul li { margin-bottom: 10px; }
+  .foot ul li .fa { color: #1f6f68; width: 16px; }
+  .foot-links li { display: inline-block; margin: 0 18px 8px 0; }
+  .foot-bot {
+    margin-top: 34px; padding-top: 20px; border-top: 1px solid #f1f5f4; font-size: 13px; color: #93a0a7;
+  }
+  .beian { margin-top: 8px; }
+  .beian a { color: #93a0a7; display: inline-block; margin: 0 14px 6px 0; }
+  .beian a:hover { color: #1f6f68; }
+  .beian a .fa { margin-right: 5px; }
+
+  /* ============ 回到顶部 ============ */
+  .to-top {
+    position: fixed; right: 24px; bottom: 30px; width: 42px; height: 42px; line-height: 40px; text-align: center;
+    border: 1px solid #e3ecea; background: #fff; color: #68757e; border-radius: 12px; display: none; z-index: 99;
+    box-shadow: 0 8px 20px rgba(38,49,58,.08);
+  }
+  .to-top:hover { color: #1f6f68; border-color: #c9e2dc; transform: translateY(-2px); }
+  .to-top .fa { margin: 0; font-size: 16px; }
+
+  /* ============ 入场动画 ============ */
+  .js .reveal { opacity: 0; transform: translateY(22px); }
+  .js .reveal.in { opacity: 1; transform: none; transition: opacity .7s ease, transform .7s cubic-bezier(.22,.8,.3,1); }
+
+  /* ============ 响应式 ============ */
+  @media (max-width: 991px) {
+    .hero h1 { font-size: 32px; }
+    .title-lg { font-size: 28px; }
+    .title-md { font-size: 23px; }
+  }
+  @media (max-width: 767px) {
+    body { padding-top: 50px; }
+    .hero { padding: 64px 0 70px; }
+    .hero h1 { font-size: 26px; letter-spacing: 1px; }
+    .hero .badge-pill { font-size: 12px; }
+    .hero .acts .btn { display: block; width: 100%; margin: 0 0 12px; }
+    .hero-meta span { display: block; }
+    .hero-meta span + span:before { display: none; }
+    .sec { padding: 56px 0; }
+    .facts { padding: 26px 0 8px; }
+    .facts-inner { margin-top: -70px; padding: 18px 6px; }
+    .fact { padding: 14px 4px; }
+    .fact .n { font-size: 22px; }
+    .fact:nth-child(3), .fact:nth-child(4) { box-shadow: inset 1px 0 0 #eef4f2; }
+    .card { padding: 26px 22px; }
+    .cta-wrap { padding-bottom: 56px; }
+    .cta-box { padding: 44px 22px; border-radius: 16px; }
+    .cta-box h2 { font-size: 22px; }
+    .foot { padding: 40px 0 24px; }
+    .foot-bot .text-right { text-align: left; margin-top: 6px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .js .reveal { opacity: 1; transform: none; }
+    html { scroll-behavior: auto; }
+  }
+</style>
 </head>
-<body>
-    <div class="card">
-        <h1>myjsw.com</h1>
-        <p>Site initialized by oject.php</p>
+<body id="top">
+
+<!-- 导航 -->
+<nav class="navbar nav-a navbar-fixed-top" role="navigation">
+  <div class="container wrap">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav-main">
+        <span class="sr-only">切换导航</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#top"><span class="mark"><i class="fa fa-graduation-cap"></i></span>教师成长社群</a>
     </div>
+    <div class="collapse navbar-collapse" id="nav-main">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#about">关于社群</a></li>
+        <li><a href="#groups">社群矩阵</a></li>
+        <li><a href="#join">加入方式</a></li>
+        <li><a href="#rules">社群公约</a></li>
+        <li><a class="btn-join" href="#join">申请加入</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- 首屏 -->
+<header class="hero">
+  <span class="blob b1"></span>
+  <span class="blob b2"></span>
+  <div class="container wrap">
+    <span class="badge-pill reveal"><i class="fa fa-circle-o"></i>2024 年至今 · 一线教师自发维护</span>
+    
+    <p class="sub reveal" style="margin-top:22px;">
+      一个面向中小学教师的纯净交流社群。<br class="hidden-xs">
+      不贩卖焦虑，不刷屏广告，只讨论课堂、学生与自身的专业成长。
+    </p>
+    <p class="acts reveal">
+      <a href="#join" class="btn btn-s"><i class="fa fa-paper-plane-o"></i>申请加入社群</a>
+      <a href="#about" class="btn btn-o"><i class="fa fa-book"></i>先了解一下</a>
+    </p>
+    <p class="hero-meta reveal">
+      <span><i class="fa fa-user-o"></i>实名制</span>
+      <span><i class="fa fa-ban"></i>零广告</span>
+      <span><i class="fa fa-map-o"></i>覆盖 31 个省市</span>
+    </p>
+  </div>
+</header>
+
+<!-- 数据概览 -->
+<section class="facts">
+  <div class="container wrap">
+    <div class="facts-inner row reveal" style="margin-left:0;margin-right:0;">
+      <div class="col-xs-6 col-sm-3 fact">
+        <div class="n">12,800<small>+</small></div>
+        <div class="t">在册教师</div>
+      </div>
+      <div class="col-xs-6 col-sm-3 fact">
+        <div class="n">31</div>
+        <div class="t">省市覆盖</div>
+      </div>
+      <div class="col-xs-6 col-sm-3 fact">
+        <div class="n">46</div>
+        <div class="t">主题教研组</div>
+      </div>
+      <div class="col-xs-6 col-sm-3 fact">
+        <div class="n">2,300<small>+</small></div>
+        <div class="t">共享教学资源</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 关于社群 -->
+<section class="sec" id="about">
+  <div class="container wrap">
+    <div class="row">
+      <div class="col-sm-5">
+        <div class="reveal">
+          <span class="eyebrow">About us</span>
+          <h2 class="title-lg">我们为什么<br>要做这个社群</h2>
+          <div class="gap-line"></div>
+          <p class="about-txt">
+            社群由一群一线教师自发发起，两年多来保持着小而稳的节奏。我们相信，教师的成长发生在真实的教学现场里，
+            也发生在同行之间坦诚的交流中。
+          </p>
+          <blockquote class="quote-box">
+            一个人走得快，一群人走得远。好课是磨出来的，好老师是聊出来的。
+            <cite>—— 社群发起团队</cite>
+          </blockquote>
+        </div>
+      </div>
+      <div class="col-sm-7">
+        <div class="row row-gap" style="margin-top:4px;">
+          <div class="col-sm-6">
+            <div class="card reveal">
+              <div class="ico"><i class="fa fa-comments-o"></i></div>
+              <h3>教学研讨</h3>
+              <p>每周一个真实课堂话题，从教学设计到课堂管理，把困惑摊开来聊。</p>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="card reveal">
+              <div class="ico"><i class="fa fa-folder-open-o"></i></div>
+              <h3>资源共享</h3>
+              <p>课件、学案、试题与班会方案，全部来自群内教师的真实课堂。</p>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="card reveal">
+              <div class="ico"><i class="fa fa-hand-peace-o"></i></div>
+              <h3>成长陪伴</h3>
+              <p>赛课打磨、论文写作、职称评审，有人陪你一起熬过去。</p>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="card reveal">
+              <div class="ico"><i class="fa fa-shield"></i></div>
+              <h3>纯净氛围</h3>
+              <p>实名加入，禁广告、禁推销、禁焦虑营销，违规一次即移出。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 社群矩阵 -->
+<section class="sec sec-line" id="groups">
+  <div class="container wrap">
+    <div class="center reveal">
+      <span class="eyebrow">Communities</span>
+      <h2 class="title-md">按学段与角色分组，进对圈子才聊得有用</h2>
+      <div class="gap-line center"></div>
+    </div>
+    <div class="row row-gap" style="margin-top:44px;">
+      <div class="col-sm-4">
+        <div class="card-plain reveal">
+          <div class="group-head">
+            <div class="ico"><i class="fa fa-child"></i></div>
+            <h3>小学教研组</h3>
+          </div>
+          <p>聚焦语文、数学的课堂管理与作业设计，每周三晚线上共读。</p>
+          <div style="margin-top:12px;"><span class="tag">语文</span><span class="tag">数学</span><span class="tag">低段</span></div>
+          <div class="group-extra"><i class="fa fa-user-o"></i>3,400 位成员在聊</div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="card-plain reveal">
+          <div class="group-head">
+            <div class="ico"><i class="fa fa-flask"></i></div>
+            <h3>初中理科群</h3>
+          </div>
+          <p>数理化生实验教学、中考复习策略与题库共建共享。</p>
+          <div style="margin-top:12px;"><span class="tag">物理</span><span class="tag">化学</span><span class="tag">中考</span></div>
+          <div class="group-extra"><i class="fa fa-user-o"></i>2,900 位成员在聊</div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="card-plain reveal">
+          <div class="group-head">
+            <div class="ico"><i class="fa fa-university"></i></div>
+            <h3>高中备考群</h3>
+          </div>
+          <p>新高考命题趋势研讨，一轮二轮复习资料互换与打磨。</p>
+          <div style="margin-top:12px;"><span class="tag">新课标</span><span class="tag">新高考</span><span class="tag">备课</span></div>
+          <div class="group-extra"><i class="fa fa-user-o"></i>2,600 位成员在聊</div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="card-plain reveal">
+          <div class="group-head">
+            <div class="ico"><i class="fa fa-users"></i></div>
+            <h3>班主任交流群</h3>
+          </div>
+          <p>家校沟通、班会设计、学生心理疏导的真实案例分享。</p>
+          <div style="margin-top:12px;"><span class="tag">家校</span><span class="tag">班会</span><span class="tag">心理</span></div>
+          <div class="group-extra"><i class="fa fa-user-o"></i>2,100 位成员在聊</div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="card-plain reveal">
+          <div class="group-head">
+            <div class="ico"><i class="fa fa-leaf"></i></div>
+            <h3>入职三年成长营</h3>
+          </div>
+          <p>师徒结对，每月一次线上复盘，陪你走过最难的三年。</p>
+          <div style="margin-top:12px;"><span class="tag">师徒结对</span><span class="tag">复盘</span><span class="tag">新教师</span></div>
+          <div class="group-extra"><i class="fa fa-user-o"></i>1,300 位成员在聊</div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="card-plain reveal">
+          <div class="group-head">
+            <div class="ico"><i class="fa fa-coffee"></i></div>
+            <h3>读书与生活会</h3>
+          </div>
+          <p>不只聊教学，也聊生活、运动、书与电影，慢慢来，比较快。</p>
+          <div style="margin-top:12px;"><span class="tag">共读</span><span class="tag">运动</span><span class="tag">慢生活</span></div>
+          <div class="group-extra"><i class="fa fa-user-o"></i>500 位成员在聊</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 加入方式 -->
+<section class="sec sec-line" id="join">
+  <div class="container wrap">
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="reveal">
+          <span class="eyebrow">How to join</span>
+          <h2 class="title-md">三步进入社群</h2>
+          <div class="gap-line"></div>
+        </div>
+        <div class="steps reveal" style="margin-top:34px;">
+          <div class="step">
+            <span class="no">1</span>
+            <h4>提交申请</h4>
+            <p>发送邮件至 hello@example.com，注明姓名、任教学段学科与所在城市即可。</p>
+          </div>
+          <div class="step">
+            <span class="no">2</span>
+            <h4>身份核验</h4>
+            <p>提供教师资格证或在职证明（敏感信息打码即可），1 个工作日内回复。</p>
+          </div>
+          <div class="step">
+            <span class="no">3</span>
+            <h4>进入社群</h4>
+            <p>管理员按学段学科邀请入群，阅读社群公约后即可参与讨论。</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="reveal" style="margin-bottom:26px;">
+          <span class="eyebrow">Upcoming</span>
+          <h2 class="title-md">近期社群活动</h2>
+          <div class="gap-line"></div>
+        </div>
+        <div class="card reveal" style="padding:12px 26px;">
+          <div class="act-item">
+            <div class="when">10 月 24 日 20:00 · 线上</div>
+            <div class="what">主题研讨：双减背景下作业如何分层设计</div>
+          </div>
+          <div class="act-item">
+            <div class="when">11 月 02 日 20:00 · 线上</div>
+            <div class="what">共读分享：《静悄悄的革命》第三章</div>
+          </div>
+          <div class="act-item">
+            <div class="when">11 月 15 日 19:30 · 线上</div>
+            <div class="what">班主任沙龙：家校沟通中的边界与温度</div>
+          </div>
+          <div class="act-item">
+            <div class="when">每月最后一个周日 · 线上</div>
+            <div class="what">新茶话会：新教师提问，老教师接招</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 社群公约 -->
+<section class="sec sec-line rules-wrap" id="rules">
+  <div class="container wrap">
+    <div class="center reveal" style="margin-bottom:40px;">
+      <span class="eyebrow">Community rules</span>
+      <h2 class="title-md">四条底线，一起守住这片自留地</h2>
+      <div class="gap-line center"></div>
+    </div>
+    <div class="row row-gap">
+      <div class="col-sm-3 col-xs-6">
+        <div class="rule-box reveal">
+          <div class="rk">RULE 01</div>
+          <h4>真诚交流</h4>
+          <p>实名以待，不人身攻击，不阴阳怪气，有分歧可以好好说。</p>
+        </div>
+      </div>
+      <div class="col-sm-3 col-xs-6">
+        <div class="rule-box reveal">
+          <div class="rk">RULE 02</div>
+          <h4>保护隐私</h4>
+          <p>与学生、家长相关的信息一律脱敏后再分享。</p>
+        </div>
+      </div>
+      <div class="col-sm-3 col-xs-6">
+        <div class="rule-box reveal">
+          <div class="rk">RULE 03</div>
+          <h4>拒绝营销</h4>
+          <p>禁止任何形式的广告、课程推销与外部链接推广。</p>
+        </div>
+      </div>
+      <div class="col-sm-3 col-xs-6">
+        <div class="rule-box reveal">
+          <div class="rk">RULE 04</div>
+          <h4>尊重版权</h4>
+          <p>转载他人资源请注明出处与原作者，商用请先取得授权。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-wrap">
+  <div class="container wrap">
+    <div class="cta-box reveal">
+      <div class="inner">
+        <h2>课堂之外，你不必一个人摸索</h2>
+        <p>现在提交申请，本周内就能和同科目的老师聊上。</p>
+        <p style="margin-top:30px;">
+          <a href="#join" class="btn btn-light"><i class="fa fa-paper-plane-o"></i>立即申请加入</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 页脚 -->
+<footer class="foot">
+  <div class="container wrap">
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="brand"><span class="mark"><i class="fa fa-graduation-cap"></i></span>教师成长社群</div>
+        <p style="margin-bottom:18px;">同行相伴，彼此成就。一个由一线教师自发维护的非营利交流社群。</p>
+        <ul class="foot-links">
+          <li><a href="#about">关于社群</a></li>
+          <li><a href="#groups">社群矩阵</a></li>
+          <li><a href="#join">加入方式</a></li>
+          <li><a href="#rules">社群公约</a></li>
+        </ul>
+      </div>
+      <div class="col-sm-3 col-xs-6">
+        <h5>联系我们</h5>
+        <ul>
+          <li><i class="fa fa-envelope-o"></i>hello@example.com</li>
+          <li><i class="fa fa-weixin"></i>公众号：教师成长社群</li>
+          <li><i class="fa fa-clock-o"></i>工作日 9:00 - 18:00</li>
+        </ul>
+      </div>
+      <div class="col-sm-5 col-xs-6">
+        <h5>友情提示</h5>
+        <p>本站内容仅供教师同行内部交流使用，不作为任何考试、评审或商业用途的依据。</p>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <div class="row">
+        <div class="col-sm-8">
+          <p>Copyright &copy; 2024-2026 教师成长社群 · 版权所有</p>
+          <p class="beian">
+            <a href="https://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+              <i class="fa fa-certificate"></i>鲁ICP备2024092961号-25
+            </a>
+            <a href="https://www.beian.gov.cn/portal/registerSystemInfo?recordcode=37130202373077" target="_blank" rel="nofollow noopener">
+              <i class="fa fa-shield"></i>鲁公网安备37130202373077号
+            </a>
+          </p>
+        </div>
+        <div class="col-sm-4 text-right hidden-xs">
+          <p><a href="#top">回到顶部 <i class="fa fa-long-arrow-up"></i></a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<a href="#top" class="to-top" title="回到顶部"><i class="fa fa-angle-up"></i></a>
+
+<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="https://apps.bdimg.com/libs/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script>
+  $(function () {
+    var navOffset = 58;
+
+    // 锚点平滑滚动（抵消固定导航高度）
+    $('a[href^="#"]').on('click', function (e) {
+      var hash = $(this).attr('href');
+      if (hash.length > 1 && $(hash).length) {
+        e.preventDefault();
+        $('html, body').animate({ scrollTop: $(hash).offset().top - navOffset }, 480, 'swing');
+        $('.navbar-collapse.in').collapse('hide');
+        if (history.replaceState) { history.replaceState(null, '', hash); }
+      }
+    });
+
+    // 回到顶部
+    var $top = $('.to-top');
+    function onScroll() {
+      var y = $(window).scrollTop();
+      if (y > 420) { $top.stop(true).fadeIn(220); } else { $top.stop(true).fadeOut(220); }
+      $('.nav-a').toggleClass('is-stick', y > 12);
+    }
+    $(window).on('scroll', onScroll);
+    onScroll();
+
+    // 入场动画
+    var $items = $('.reveal');
+    function reveal() {
+      var h = $(window).height();
+      $items.each(function () {
+        var $el = $(this);
+        if ($el.hasClass('in')) { return; }
+        if ($el.offset().top < $(window).scrollTop() + h - 90) {
+          setTimeout(function () { $el.addClass('in'); }, Number($el.data('delay') || 0));
+        }
+      });
+    }
+    // 首屏元素错峰出现
+    $('.hero .reveal').each(function (i) { $(this).data('delay', i * 90); });
+    $('.row-gap .reveal').each(function (i) { if (!$(this).data('delay')) { $(this).data('delay', (i % 4) * 80); } });
+    $(window).on('scroll resize', reveal);
+    reveal();
+  });
+</script>
 </body>
 </html>
